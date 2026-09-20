@@ -1,0 +1,54 @@
+generated: '2026-09-19'
+method: searched
+source: https://fleethelp.ai/terms/
+docs:
+- https://fleethelp.ai/terms/
+- https://fleethelp.ai/data/
+- https://fleethelp.ai/managed-support/
+- https://fleethelp.ai/.well-known/agent.json
+versioning:
+  scheme: none published — the only versioned artifact is the agent card (version 1.0.0, protocolVersion 0.3.0)
+  current_version: 1.0.0 (agent card version) on A2A protocolVersion 0.3.0
+  policy_published: false
+  note: >-
+    There is no API, so there is no API versioning. The agent card declares version "1.0.0" and A2A
+    protocolVersion "0.3.0" and is served at the pre-0.3 legacy path /.well-known/agent.json, not the 1.0.0
+    canonical /.well-known/agent-card.json — the card has not been moved forward with the protocol. Site
+    documents carry "Last updated" dates: Terms of Service March 6, 2026; Data Handling July 8, 2026;
+    llms-full.txt 2026-07-13; Managed AI Agent Support page 2026-07-14.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  note: >-
+    No deprecation or change policy exists. Terms s.10: "We may update these terms at any time. Continued
+    use of the Service after changes constitutes acceptance of the new terms." — a unilateral-change clause,
+    not a notice period. No Deprecation pointer is emitted.
+status_page:
+  url: null
+  probed: [{url: 'https://fleethelp.ai/status/', status: 404}]
+  note: No status page. No StatusPage pointer is emitted.
+sla:
+  published: false
+  availability: '"We aim for 24/7 availability but do not guarantee uptime." (Terms s.6)'
+  response_time: '"Response times are typically under 60 seconds but may vary." (Terms s.6); the managed-support page says "usually in under 60 seconds"'
+  warranty: 'The Service is provided "as is" without warranty of any kind. (Terms s.6)'
+  note: A target, not a commitment — no credits, no measurement, no remedy.
+commercial_lifecycle:
+  refund_window: 'Refunds are available within 48 hours of your initial subscription payment. (Terms s.8)'
+  cancellation: 'You may cancel your subscription at any time. Access continues until the end of your current billing period. No partial refunds are issued for the remaining days in a billing cycle. (Terms s.8-9)'
+  data_after_cancellation: 'If you cancel your subscription, your data is deleted within 30 days. (Data Handling)'
+  retention: 'Incident history is retained for 12 months from the date of each conversation, then deleted. (Data Handling)'
+  note: >-
+    These are the only dated windows the provider states. They govern the subscription, not an API write
+    surface; there is no API, so idempotency, dry-run and reversibility of operations are all not applicable.
+x-evidence:
+  fetched: '2026-09-19'
+  probes:
+  - {url: 'https://fleethelp.ai/terms/', status: 200}
+  - {url: 'https://fleethelp.ai/data/', status: 200}
+  - {url: 'https://fleethelp.ai/managed-support/', status: 200}
+  - {url: 'https://fleethelp.ai/status/', status: 404}
+  - {url: 'https://fleethelp.ai/changelog/', status: null, note: not probed — no changelog is linked from any page, sitemap or llms.txt}

@@ -1,0 +1,82 @@
+generated: '2026-09-19'
+method: searched
+probe: true
+source: https://fleethelp.ai/data/
+signals:
+  subprocessors:
+    url: https://fleethelp.ai/data/
+    dated: '2026-07-08'
+    named: [Telegram (messaging layer), Stripe (payments)]
+    evidence: >-
+      Data Handling page, section "Subprocessors", last updated July 8, 2026: "FleetHelp uses Telegram as
+      the messaging layer (Telegram's privacy policy applies to messages in transit). Payments are processed
+      by Stripe. No other third parties receive your support conversation data." A closed, named, dated
+      list on a page whose whole subject is data handling — substance, not the word. It is a two-line
+      section, not a table, and carries no processing-location column; recorded as published because it
+      names every processor and states that the list is exhaustive.
+  data_subject_request:
+    url: https://fleethelp.ai/data/
+    channel: email to support (address obfuscated on the page; no form, no API)
+    evidence: >-
+      Data Handling page: "If you want your incident history deleted, contact support and we'll remove it."
+      and "You can request earlier deletion at any time by contacting support." Also states retention
+      ("Incident history is retained for 12 months from the date of each conversation, then deleted") and
+      post-cancellation deletion ("deleted within 30 days"). A deletion-on-request commitment with a stated
+      channel; no access/portability right is described, and no timeline for honouring a request is given.
+probed_absent:
+- signal: incident_notification
+  urls:
+  - {url: 'https://fleethelp.ai/legal/dpa', status: 404}
+  note: No DPA and no breach-notification commitment. The Data Handling page says that if an agent accidentally includes a credential "we will flag it and tell you to rotate it" — a handling practice for the customer's own leak, not an incident-notification SLA.
+- signal: ai_transparency
+  urls:
+  - {url: 'https://fleethelp.ai/managed-support/', status: 200}
+  note: >-
+    The site is explicit that the responder is an agent fleet with "no human on either side", and the Terms
+    (s.7) say "FleetHelp provides technical guidance only ... You are responsible for validating all
+    suggestions". That is product disclosure in marketing and terms, not a published AI transparency
+    statement, so it is not recorded as the signal.
+- signal: training_data_summary
+  note: FleetHelp is a model consumer, not a model provider; nothing is published about which models the fleet runs on or what they were trained on.
+- signal: accessibility_conformance
+  urls:
+  - {url: 'https://fleethelp.ai/accessibility/', status: 404}
+- signal: sbom
+  urls:
+  - {url: 'https://fleethelp.ai/security/', status: 404}
+  note: No bill of materials published. Never derived — search only.
+- signal: support_lifetime
+  urls:
+  - {url: 'https://fleethelp.ai/terms/', status: 200}
+  note: Terms carry a unilateral-change clause (s.10) and no support period. Recorded in lifecycle/, not here.
+- signal: data_residency
+  note: >-
+    No residency statement for FleetHelp. The operator's corporate llms.txt (kaxo.io) advertises "sovereign
+    Canadian hosting when you need data residency" for its consulting services — a different offer on a
+    different site, not a commitment about where FleetHelp's incident history lives.
+- signal: global_privacy_control
+  note: No published statement that Sec-GPC is honored. Not tested by sending a header.
+- signal: age_assurance
+  note: Nothing published; the product is sold to organizations operating agent fleets.
+- signal: notice_and_action
+  urls:
+  - {url: 'https://fleethelp.ai/legal/report-content', status: 404}
+- signal: transparency_report
+  urls:
+  - {url: 'https://fleethelp.ai/transparency/', status: null, note: not linked from any page or sitemap; not probed}
+- signal: exit_assistance
+  note: No export or portability commitment. The Data Handling page frames the incident history as "a record of what was diagnosed", but describes no way to take it out other than asking for it to be deleted.
+legal_pages_probed:
+- {url: 'https://fleethelp.ai/terms/', status: 200, last_updated: '2026-03-06'}
+- {url: 'https://fleethelp.ai/data/', status: 200, last_updated: '2026-07-08'}
+- {url: 'https://fleethelp.ai/privacy/', status: 404}
+- {url: 'https://fleethelp.ai/legal/subprocessors', status: 404}
+- {url: 'https://fleethelp.ai/legal/dpa', status: 404}
+- {url: 'https://fleethelp.ai/security/', status: 404}
+- {url: 'https://fleethelp.ai/accessibility/', status: 404}
+note: >-
+  Two signals, both from one page. FleetHelp publishes a short, plain-language Data Handling statement in
+  place of a privacy policy (there is no /privacy/): what the bot receives, what is stored, per-customer
+  isolation, a 12-month retention period, 30-day post-cancellation deletion, deletion on request, and a named
+  two-processor list. The legal entity is Kaxo Technologies (Terms s.1; corporate site kaxo.io, Canada).
+  Which regimes reach the provider is decided by the Kin Score regime map, not here.

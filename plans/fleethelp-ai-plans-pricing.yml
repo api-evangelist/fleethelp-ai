@@ -1,0 +1,73 @@
+generated: '2026-09-19'
+method: searched
+source: https://fleethelp.ai/
+docs:
+- https://fleethelp.ai/managed-support/
+- https://fleethelp.ai/terms/
+- https://fleethelp.ai/llms.txt
+- https://buy.stripe.com/6oU6oJ77M1Zs7xA1gz43S00
+plan_count: 3
+currency: USD
+currency_note: >-
+  The homepage ("Subscribe — $99/mo"), llms.txt ("$99 USD/month per organization") and the managed-support
+  page say USD; the Terms of Service s.2 (last updated March 6, 2026) say "$99 CAD per month per
+  organization". Both are the provider's own words and they disagree; USD is recorded because it is what the
+  three customer-facing pages say, and the CAD figure is preserved here so a reader sees the discrepancy.
+  The operator (Kaxo Technologies) is Canadian. Checkout is a Stripe Payment Link (loads, HTTP 200) and the
+  currency Stripe charges was not read from it.
+model: monthly subscription per organization, message-metered; payment by card on the site (Stripe) or in Telegram (card or Telegram Stars)
+summary: >-
+  FleetHelp publishes one base subscription, one add-on and one VIP tier. $99/month per organization with 100
+  support messages included and unlimited agents on the same subscription; extra messages in 50-message packs
+  at $29; a $199/month VIP tier described as a private group with unlimited messages and direct fleet-agent
+  access. Messages do not roll over. 48-hour refund window from the first payment; cancel any time, access to
+  the end of the billing period. There is no free tier and no trial. Prices as shown on 2026-09-19.
+plans:
+- id: base
+  name: FleetHelp (base subscription)
+  price: 99
+  currency: USD
+  period: month
+  per: organization
+  included: 100 messages per billing month
+  overage: '$29 per 50-message pack (messages do not roll over)'
+  limits:
+  - 100 messages/month
+  - unlimited agents per organization (no per-agent fee)
+  - messages do not roll over between billing cycles
+  signup: https://buy.stripe.com/6oU6oJ77M1Zs7xA1gz43S00
+  evidence: 'homepage "subscribe — $99/mo ... 100 messages included. No contracts."; Terms s.2 and s.4; llms.txt Pricing'
+- id: message-pack
+  name: Additional message pack
+  price: 29
+  currency: USD
+  period: one-time
+  included: 50 messages
+  evidence: 'Terms s.4 "Additional message packs available ($29/50 messages)"; llms.txt "Additional message packs: $29/50 messages"'
+- id: vip
+  name: VIP tier
+  price: 199
+  currency: USD
+  period: month
+  included: unlimited messages
+  limits:
+  - private group
+  - direct fleet agent access
+  evidence: 'llms.txt Pricing: "VIP tier: $199/month (private group, unlimited messages, direct fleet agent access)". Not described on the HTML pages or in the Terms.'
+terms:
+  refund: 'Refunds are available within 48 hours of your initial subscription payment. After the 48-hour window, cancellation takes effect at the end of the current billing period. No partial refunds are issued for the remaining days in a billing cycle. (Terms s.8)'
+  cancellation: 'You may cancel your subscription at any time. Access continues until the end of your current billing period. (Terms s.9)'
+  contracts: '"No contracts." (homepage)'
+  payment: 'Payments are processed via Stripe ... recurring monthly charges (Terms s.3); "pay directly in Telegram with card or Stars" (homepage)'
+free_tier: false
+trial: false
+enterprise_contact: false
+x-evidence:
+  fetched: '2026-09-19'
+  probes:
+  - {url: 'https://fleethelp.ai/', status: 200}
+  - {url: 'https://fleethelp.ai/managed-support/', status: 200}
+  - {url: 'https://fleethelp.ai/terms/', status: 200}
+  - {url: 'https://fleethelp.ai/llms.txt', status: 200}
+  - {url: 'https://fleethelp.ai/pricing/', status: 404}
+  - {url: 'https://buy.stripe.com/6oU6oJ77M1Zs7xA1gz43S00', status: 200, note: Stripe Checkout}

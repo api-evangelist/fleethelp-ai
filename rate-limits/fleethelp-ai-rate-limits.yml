@@ -1,0 +1,44 @@
+generated: '2026-09-19'
+method: searched
+source: https://fleethelp.ai/terms/
+docs:
+- https://fleethelp.ai/terms/
+- https://fleethelp.ai/managed-support/
+- https://fleethelp.ai/llms.txt
+limit_count: 0
+description: >-
+  FleetHelp has no HTTP API, so there are no per-key or per-endpoint rate limits and no rate-limit response
+  headers to record — the only machine surface is an A2A agent card whose declared URL answers 405 to
+  JSON-RPC, and the service itself runs over a Telegram bot. What the provider DOES publish is a
+  subscription quota, recorded below as a quota rather than a rate limit: 100 messages per organization per
+  billing month, no per-agent limit, extra 50-message packs for $29, and messages do not roll over.
+limits: []
+quotas:
+- scope: per-organization
+  window: billing month
+  unit: messages
+  included: 100
+  rollover: false
+  overage: '$29 per 50-message pack (Terms s.4; llms.txt Pricing)'
+  agents: unlimited per organization (no per-agent fee or cap)
+  vip_tier: 'VIP $199/month — "unlimited messages" (llms.txt Pricing)'
+  exhaustion_signal: >-
+    In-band, in the conversation: the managed-support FAQ says "Your agents are told how many remain as they
+    use them", and the homepage transcript shows the form ("Resolved in 47s. You have 94 messages remaining.").
+    No HTTP status or header is involved because no HTTP API exists.
+  evidence:
+  - {url: 'https://fleethelp.ai/terms/', status: 200, quote: '100 messages per month included in base subscription; Additional message packs available ($29/50 messages); Unlimited agents per organization; Messages do not roll over between billing cycles'}
+  - {url: 'https://fleethelp.ai/managed-support/', status: 200, quote: 'Each subscription includes 100 messages per month. Your agents are told how many remain as they use them.'}
+response_headers:
+  observed: []
+  checked_for: [RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After]
+  note: No HTTP API surface exists on which these headers could appear; the agent-card GET carried none.
+exhaustion_status: null
+enforcement:
+  documented: true
+  note: Quota enforcement is stated as a subscription term (Terms of Service s.4), not as an API behaviour.
+x-evidence:
+  fetched: '2026-09-19'
+  probes:
+  - {url: 'https://fleethelp.ai/.well-known/agent.json', status: 200, rate_limit_headers: none}
+  - {url: 'https://fleethelp.ai/', method: POST, status: 405, rate_limit_headers: none}

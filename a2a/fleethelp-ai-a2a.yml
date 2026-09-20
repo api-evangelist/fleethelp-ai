@@ -1,0 +1,71 @@
+generated: '2026-09-19'
+method: probed
+source: https://fleethelp.ai/.well-known/agent.json
+description: >-
+  A2A Agent Card observed at the legacy /.well-known/agent.json path on fleethelp.ai (the canonical
+  /.well-known/agent-card.json returns the site's real 404). Grade is measured against the A2A 1.0.0
+  AgentCard object: 'conformant' passes every structural check, 'near-conformant' is correctly shaped but
+  omits optional fields, 'flavored' fails a hard check. Provider-published by construction — served from
+  the provider's own host; nothing here is derived or generated. FleetHelp is an agent-to-agent support
+  service operated by Kaxo Technologies (Canada): a subscriber's AI agents message the FleetHelp bot on
+  Telegram and a fleet of support agents replies with a fix. The card is how the service advertises
+  itself to the A2A ecosystem; it is listed on a2aregistry.org, which is how this record was found.
+discovery:
+  path: /.well-known/agent.json
+  canonical: false
+  host: fleethelp.ai
+  also_probed:
+  - {url: 'https://fleethelp.ai/.well-known/agent-card.json', status: 404, note: canonical path not served}
+  - {url: 'https://kaxo.io/.well-known/agent-card.json', status: 404, note: operator's corporate host}
+  - {url: 'https://kaxo.io/.well-known/agent.json', status: 404}
+  - {url: 'https://www.fleethelp.ai/.well-known/agent.json', status: null, note: www has no DNS record}
+conformance:
+  spec: A2A 1.0.0
+  grade: near-conformant
+  protocol_version: 0.3.0
+  preferred_transport: null
+  deviations:
+  - no-preferredTransport
+  - legacy-well-known-path
+  - legacy-authentication-field
+  - non-standard-fields
+  - url-is-website-root
+  notes: >-
+    Hard checks pass: capabilities is an object ({streaming, pushNotifications, stateTransitionHistory},
+    all false), protocolVersion is present ("0.3.0"), skills is an array of four. Missing optional
+    preferredTransport (defaultInputModes/defaultOutputModes ARE present). The card carries a pre-0.3
+    `authentication: {schemes: ["none"], note}` block where A2A 0.3+/1.0 use securitySchemes + security,
+    and two fields outside the schema (`author`, `wellKnownURI`). Its `url` is the marketing site root
+    https://fleethelp.ai, not a JSON-RPC endpoint: a JSON-RPC 2.0 POST to that URL (and to /a2a) returned
+    HTTP 405 with an empty body on 2026-09-19, so no A2A transport endpoint was reachable — the service is
+    delivered through the Telegram bot @kaxo_fleethelp_bot ("Fleet Helper"), which the card's
+    authentication.note and the site both say. Recorded as a deviation, not as a failure of a hard check.
+card:
+  name: FleetHelp Support Agent
+  description: >-
+    A2A support service for AI agent fleets. Infrastructure debugging, workflow troubleshooting,
+    architecture guidance, and production operations for OpenClaw, CrewAI, LangGraph, AutoGen, and custom
+    agent frameworks.
+  url: https://fleethelp.ai
+  version: 1.0.0
+  provider:
+    organization: Kaxo Technologies
+    url: https://kaxo.io
+  skills: 4
+  skill_ids: [infrastructure-debugging, workflow-troubleshooting, architecture-guidance, production-operations]
+  input_modes: [text/plain]
+  output_modes: [text/plain]
+  authentication: none (subscription required to use the service; see authentication.note in the card)
+  file: fleethelp-ai-agent-card.json
+x-evidence:
+  fetched: '2026-09-19'
+  url: https://fleethelp.ai/.well-known/agent.json
+  http_status: 200
+  content_type: application/json
+  bytes: 3292
+  etag: '"5d846f392509db9309d24edee65a2278"'
+  endpoint_probe:
+  - {method: POST, url: 'https://fleethelp.ai/', body: 'jsonrpc 2.0 tasks/get', status: 405}
+  - {method: POST, url: 'https://fleethelp.ai/a2a', body: 'jsonrpc 2.0 tasks/get', status: 405}
+  registry: https://a2aregistry.org (listed as FleetHelp Support Agent; harvest source a2a-registry)
+  note: Verbatim body saved alongside this manifest. No field inferred.

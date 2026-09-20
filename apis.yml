@@ -1,18 +1,69 @@
 aid: fleethelp-ai
 name: Kaxo Technologies
-description: 'Kaxo Technologies is a company surfaced via the API Evangelist harvest backlog (source:
-  a2a-registry) and added to the network as a stub for full-pipeline profiling.'
+description: >-
+  Kaxo Technologies is a Canadian AI consulting and agentic-engineering firm (kaxo.io) that operates
+  FleetHelp (fleethelp.ai), an agent-to-agent support service for production AI agent fleets: a subscriber's
+  agents message the FleetHelp bot on Telegram (@kaxo_fleethelp_bot) when something breaks, and a fleet of
+  support agents replies with a diagnosis and fix — infrastructure debugging, workflow troubleshooting,
+  agent architecture and production operations for OpenClaw, CrewAI, LangGraph, AutoGen and custom agents —
+  with no human on either side and no access to the customer's infrastructure. Sold at $99/month per
+  organization with 100 messages included. FleetHelp publishes no HTTP API, OpenAPI or MCP server; its
+  machine surface is an A2A agent card (protocolVersion 0.3.0, four skills) served at the legacy
+  /.well-known/agent.json path and listed on a2aregistry.org, plus an llms.txt.
 url: https://raw.githubusercontent.com/api-evangelist/fleethelp-ai/refs/heads/main/apis.yml
+image: https://fleethelp.ai/images/og-fleethelp.png
 x-type: company
 x-source: harvest:a2a-registry
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-09-19 (local-v3; was a2a-registry harvest stub)
 specificationVersion: '0.20'
 created: '2026-09-19'
 modified: '2026-09-19'
 tags:
-- Company
-apis: []
+- Agents
+- A2A
+- AI Agents
+- Agent Support
+- DevOps
+- Telegram
+- agent-native
+- Canada
+tags_raw:
+- Agents
+- A2A
+- AI agents
+- Agent support
+- DevOps
+- Telegram
+- Agent-native
+- Canada
+apis:
+- aid: fleethelp-ai:fleethelp-support-agent
+  name: FleetHelp Support Agent (A2A)
+  description: >-
+    Agent2Agent (A2A) surface: an agent card served from https://fleethelp.ai/.well-known/agent.json
+    (protocolVersion 0.3.0, version 1.0.0, authentication "none") advertising four text/plain skills —
+    infrastructure-debugging, workflow-troubleshooting, architecture-guidance and production-operations.
+    The card's url is the site root https://fleethelp.ai, which answered HTTP 405 to a JSON-RPC 2.0 POST on
+    2026-09-19; no A2A transport endpoint was reachable. The service is delivered through the Telegram bot
+    @kaxo_fleethelp_bot to paying subscribers, which the card's authentication.note states. Graded
+    near-conformant against A2A 1.0.0 (no preferredTransport; legacy path; legacy authentication field).
+  image: https://fleethelp.ai/images/og-fleethelp.png
+  humanURL: https://fleethelp.ai/managed-support/
+  baseURL: https://fleethelp.ai
+  tags:
+  - A2A
+  - Agents
+  - agent-native
+  properties:
+  - type: AgentCard
+    url: a2a/fleethelp-ai-a2a.yml
+  - type: AgentCard
+    name: A2A Agent Card (provider-hosted, legacy path)
+    url: https://fleethelp.ai/.well-known/agent.json
+  - type: Documentation
+    name: Managed AI Agent Support — what it covers
+    url: https://fleethelp.ai/managed-support/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -21,3 +72,49 @@ maintainers:
 common:
 - type: Website
   url: https://fleethelp.ai/
+- type: Documentation
+  url: https://fleethelp.ai/managed-support/
+- type: Pricing
+  name: Managed support page — "What it costs"
+  url: https://fleethelp.ai/managed-support/
+- type: SignUp
+  name: Subscribe (Stripe Checkout)
+  url: https://buy.stripe.com/6oU6oJ77M1Zs7xA1gz43S00
+- type: Blog
+  name: Agent Framework Debugging Guides
+  url: https://fleethelp.ai/guides/
+- type: TermsOfService
+  url: https://fleethelp.ai/terms/
+- type: PrivacyPolicy
+  name: Data Handling
+  url: https://fleethelp.ai/data/
+- type: AgentCard
+  url: a2a/fleethelp-ai-a2a.yml
+  name: A2A Agent Card
+  description: Agent Card served at /.well-known/agent.json (near-conformant against A2A 1.0.0).
+- type: WellKnown
+  url: well-known/fleethelp-ai-well-known.yml
+- type: LLMsTxt
+  url: llms/fleethelp-ai-llms.txt
+  name: llms.txt
+- type: Plans
+  url: plans/fleethelp-ai-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/fleethelp-ai-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/fleethelp-ai-lifecycle.yml
+- type: Conformance
+  url: conformance/fleethelp-ai-conformance.yml
+- type: DomainSecurity
+  url: security/fleethelp-ai-domain-security.yml
+- type: RegulatoryPosture
+  url: regulatory/fleethelp-ai-regulatory-posture.yml
+- type: Subprocessors
+  url: https://fleethelp.ai/data/
+- type: DataSubjectRequest
+  url: https://fleethelp.ai/data/
+x-enrichment:
+  date: '2026-09-19'
+  status: enriched
+  artifacts_added: 9
+  pass: local-v3

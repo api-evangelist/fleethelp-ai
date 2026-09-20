@@ -64,5 +64,9 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Kaxo Technologies is a company surfaced via the API Evangelist harvest backlog (source: a2a-registry) and added to the network as a stub for full-pipeline profiling.
+Kaxo Technologies is a Canadian AI consulting and agentic-engineering firm (kaxo.io) that operates FleetHelp (fleethelp.ai), an agent-to-agent support service for production AI agent fleets: a subscriber's agents message the FleetHelp bot on Telegram and a fleet of support agents replies with a diagnosis and fix. FleetHelp publishes no HTTP API, OpenAPI or MCP server; its machine surface is an A2A agent card (protocolVersion 0.3.0, four skills) served at the legacy `/.well-known/agent.json` path, plus an `llms.txt`.
+
 - https://fleethelp.ai/
+- A2A agent card: https://fleethelp.ai/.well-known/agent.json (graded in `a2a/fleethelp-ai-a2a.yml`)
+- llms.txt: https://fleethelp.ai/llms.txt
+- Operator: https://kaxo.io

@@ -1,0 +1,62 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "FleetHelp Support Agent",
+  "description": "A2A support service for AI agent fleets. Infrastructure debugging, workflow troubleshooting, architecture guidance, and production operations for OpenClaw, CrewAI, LangGraph, AutoGen, and custom agent frameworks.",
+  "url": "https://fleethelp.ai",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "skills": [
+    {
+      "id": "infrastructure-debugging",
+      "name": "Infrastructure Debugging",
+      "description": "Diagnose and fix gateway errors, token mismatches, memory leaks, WebSocket failures, and deployment issues across agent platforms.",
+      "tags": ["infrastructure", "docker", "networking", "debugging", "deployment"],
+      "examples": ["My OpenClaw gateway returns 502 after upgrading to v2026.3", "Docker container keeps restarting with OOM killed", "Agent can't reach Ollama on the host network"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["text/plain"]
+    },
+    {
+      "id": "workflow-troubleshooting",
+      "name": "Workflow Troubleshooting",
+      "description": "Debug cron job failures, Telegram delivery issues, sandbox configuration, session isolation problems, and inter-agent communication.",
+      "tags": ["workflows", "cron", "n8n", "webhooks", "automation"],
+      "examples": ["My n8n cron job runs but the webhook never fires", "Telegram messages aren't being delivered to my agent", "How do I isolate sandbox permissions per agent?"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["text/plain"]
+    },
+    {
+      "id": "architecture-guidance",
+      "name": "Agent Architecture Guidance",
+      "description": "Multi-agent design patterns, context isolation, model routing strategies, cost optimization, and scaling from single to fleet deployments.",
+      "tags": ["architecture", "multi-agent", "design", "cost-optimization", "scaling"],
+      "examples": ["How should I structure context isolation for 8 agents sharing one gateway?", "What model routing strategy minimizes cost for a mixed Opus/Haiku fleet?", "Best practices for scaling from 3 agents to 20?"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["text/plain"]
+    },
+    {
+      "id": "production-operations",
+      "name": "Production Operations",
+      "description": "Version migration support, security hardening, secrets management, monitoring setup, and upgrade rollback procedures.",
+      "tags": ["operations", "security", "monitoring", "upgrades", "production"],
+      "examples": ["How do I migrate from OpenClaw v2026.2 to v2026.3 without downtime?", "What should my agent monitoring stack look like?", "Help me set up secrets rotation for my fleet"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["text/plain"]
+    }
+  ],
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "provider": {
+    "organization": "Kaxo Technologies",
+    "url": "https://kaxo.io"
+  },
+  "authentication": {
+    "schemes": ["none"],
+    "note": "Subscribe at https://fleethelp.ai for access. Support delivered via A2A protocol."
+  },
+  "author": "Kaxo Technologies",
+  "wellKnownURI": "https://fleethelp.ai/.well-known/agent.json"
+}

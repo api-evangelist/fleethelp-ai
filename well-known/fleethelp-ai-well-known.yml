@@ -1,0 +1,119 @@
+generated: '2026-09-19'
+method: probed
+source: >-
+  Live GET probes of the named /.well-known/* path list on fleethelp.ai and kaxo.io (the operator's
+  corporate host named in the agent card's provider.url), 2026-09-19. Every row below is a request that
+  was actually issued; every status is the one returned.
+summary:
+  hosts_probed: 2
+  hosts_unresolvable: 1
+  paths_probed: 32
+  documents_served: 1
+  hit_count: 1
+  path_echo_control: passed
+  note: >-
+    FleetHelp serves exactly one well-known document: the A2A agent card at the legacy path
+    /.well-known/agent.json (saved verbatim under a2a/ and graded near-conformant in a2a/fleethelp-ai-a2a.yml).
+    Every other named path returns the site's real HTML 404 (3,758 bytes, HTTP 404 — not a 200 shell), and a
+    negative-control path that cannot exist also 404s, so the single 200 is a served document. No
+    security.txt, no OAuth/OIDC discovery (the card declares authentication "none"), no RFC 9727 API catalog,
+    no APIs.json, no AAuth resource document, no ai-plugin, no UCP/ACP manifest. There is no API host, MCP
+    host or docs host to probe: api., docs., mcp., app. and www.fleethelp.ai have no DNS records. kaxo.io
+    serves an llms.txt but no well-known document of any kind (its 404 is a 21,403-byte HTML page, HTTP 404).
+    The WellKnown pointer is emitted on the strength of the one served document; no SecurityTxt pointer.
+hosts:
+- host: fleethelp.ai
+  role: Website and A2A agent-card host (the only resolvable fleethelp.ai host)
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/agent.json
+    status: 200
+    content_type: application/json
+    bytes: 3292
+    file: ../a2a/fleethelp-ai-agent-card.json
+    standard: A2A Agent Card (protocolVersion 0.3.0, legacy path)
+    note: Saved verbatim under a2a/ and graded in a2a/fleethelp-ai-a2a.yml (near-conformant).
+  - path: /.well-known/agent-card.json
+    status: 404
+    note: Canonical A2A 1.0.0 path. Not served.
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/fleethelp-negative-control-9c2e41ab.json
+    status: 404
+    control: true
+  related_root_documents:
+  - {path: /llms.txt, status: 200, content_type: text/plain, file: ../llms/fleethelp-ai-llms.txt}
+  - {path: /llms-full.txt, status: 200, content_type: text/plain, note: not saved (gitignored class)}
+  - {path: /robots.txt, status: 200, note: 'Allow: / for all agents; names GPTBot, ClaudeBot, PerplexityBot explicitly'}
+  - {path: /sitemap.xml, status: 200, note: 8 URLs}
+- host: kaxo.io
+  role: Operator's corporate site (agent card provider.url); probed because the card names it
+  path_echo_control: passed
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/api-catalog.json
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/ucp.json
+    status: 404
+  - path: /.well-known/acp.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/fleethelp-negative-control-9c2e41ab.json
+    status: 404
+    control: true
+  related_root_documents:
+  - {path: /llms.txt, status: 200, content_type: text/plain, note: 'Kaxo Technologies corporate llms.txt (16,757 bytes); not this product'}
+unresolvable_hosts:
+- {host: www.fleethelp.ai, dns: none}
+- {host: api.fleethelp.ai, dns: none}
+- {host: docs.fleethelp.ai, dns: none}
+- {host: mcp.fleethelp.ai, dns: none}
+- {host: app.fleethelp.ai, dns: none}

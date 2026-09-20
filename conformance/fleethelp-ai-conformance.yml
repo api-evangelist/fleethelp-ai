@@ -1,0 +1,49 @@
+generated: '2026-09-19'
+method: searched
+source: https://fleethelp.ai/.well-known/agent.json
+docs:
+- https://fleethelp.ai/llms.txt
+- https://fleethelp.ai/terms/
+summary: >-
+  FleetHelp's conformance profile is a single agent-ecosystem declaration: an A2A agent card at
+  protocolVersion 0.3.0, served from the legacy well-known path, whose declared URL exposes no JSON-RPC
+  transport (POST 405) because the service actually runs over Telegram. It declares no OAuth/OIDC (the card
+  says authentication "none"), no OpenAPI, no MCP, no RFC 9457, no RFC 9116 security.txt, no RFC 9727 API
+  catalog and no RFC 8594 sunset signalling. The provider's market (support for AI-agent operators) has no
+  domain standard of its own, so no domain_standard_signature is recorded — reward-only, nothing invented.
+standards:
+- id: a2a
+  name: Agent2Agent protocol
+  version: '0.3.0'
+  conforms: true
+  verification: partial
+  evidence: >-
+    a2a/fleethelp-ai-agent-card.json — protocolVersion "0.3.0", capabilities object, skills[] of 4,
+    defaultInputModes/defaultOutputModes text/plain; graded near-conformant in a2a/fleethelp-ai-a2a.yml
+    (no preferredTransport; legacy `authentication` block; url is the site root and POST https://fleethelp.ai/
+    returned 405 on 2026-09-19, so the card conforms as a document while no A2A endpoint was reachable).
+- id: llms-txt
+  name: llms.txt
+  conforms: true
+  evidence: 'https://fleethelp.ai/llms.txt (200, text/plain) — H1, blockquote summary, H2 link sections; saved verbatim in llms/fleethelp-ai-llms.txt. robots.txt also advertises /llms.txt and /llms-full.txt.'
+- id: oauth2
+  conforms: false
+  evidence: 'No OAuth surface: /.well-known/oauth-authorization-server and /oauth-protected-resource 404; the agent card declares authentication schemes ["none"].'
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404 on fleethelp.ai and kaxo.io.
+- id: rfc9116
+  name: security.txt
+  conforms: false
+  evidence: /.well-known/security.txt 404 on fleethelp.ai and kaxo.io.
+- id: rfc9727
+  name: API catalog
+  conforms: false
+  evidence: /.well-known/api-catalog 404 on both hosts.
+- id: rfc8594
+  name: Sunset header
+  conforms: false
+  evidence: No API surface on which a Sunset header could be observed; no deprecation policy published (lifecycle/).
+- id: rfc9457
+  conforms: false
+  evidence: No HTTP API; nothing to emit problem+json.
