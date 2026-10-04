@@ -26,7 +26,7 @@ tags:
 - Agent Support
 - DevOps
 - Telegram
-- agent-native
+- Agent-Native
 - Canada
 tags_raw:
 - Agents
@@ -37,6 +37,7 @@ tags_raw:
 - Telegram
 - Agent-native
 - Canada
+- agent-native
 apis:
 - aid: fleethelp-ai:fleethelp-support-agent
   name: FleetHelp Support Agent (A2A)
@@ -50,8 +51,11 @@ apis:
     near-conformant against A2A 1.0.0 (no preferredTransport; legacy path; legacy authentication field).
   image: https://fleethelp.ai/images/og-fleethelp.png
   humanURL: https://fleethelp.ai/managed-support/
-  baseURL: https://fleethelp.ai
   tags:
+  - A2A
+  - Agents
+  - Agent-Native
+  tags_raw:
   - A2A
   - Agents
   - agent-native
@@ -118,3 +122,10 @@ x-enrichment:
   status: enriched
   artifacts_added: 9
   pass: local-v3
+x-a2a:
+  verified: true
+  probed: '2026-09-26'
+  url: "https://fleethelp.ai/.well-known/agent.json"
+  grade: "near-conformant"
+  protocol_version: "0.3.0"
+  control: 404
