@@ -71,3 +71,32 @@ x-evidence:
   - {url: 'https://fleethelp.ai/llms.txt', status: 200}
   - {url: 'https://fleethelp.ai/pricing/', status: 404}
   - {url: 'https://buy.stripe.com/6oU6oJ77M1Zs7xA1gz43S00', status: 200, note: Stripe Checkout}
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - subscription
+  units: []
+  plans:
+  - name: FleetHelp (base subscription)
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Additional message pack
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - one-time
+  - name: VIP tier
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
